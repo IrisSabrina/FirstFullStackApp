@@ -13,10 +13,15 @@ const db = mongoose.connection;
 const PORT = process.env.PORT || 3000;
 
 //___________________
+//Page Variables
+//___________________
+// const IndexPage = require('../views/index.ejs')
+
+//___________________
 //Database
 //___________________
 // How to connect to the database either via heroku or locally
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/'+ `YOUR DATABASE NAME`;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/'+ `stitchy`;
 
 // Connect to Mongo
 mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true});
@@ -48,11 +53,15 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 //localhost:3000
-app.get('/' , (req, res) => {
-  res.send('Hello World!');
-});
+// app.get('/' , (req, res) => {
+//   res.send('Hello World!');
+// });
+
+app.get('/index', (req,res) => {
+  res.render('index.ejs')
+})
 
 //___________________
 //Listener
 //___________________
-app.listen(PORT, () => console.log( 'Listening on port:', PORT)); 
+app.listen(PORT, () => console.log( 'Listening on port:', PORT));
