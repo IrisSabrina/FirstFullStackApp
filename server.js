@@ -13,11 +13,6 @@ const db = mongoose.connection;
 const PORT = process.env.PORT || 3000;
 
 //___________________
-//Page Variables
-//___________________
-// const IndexPage = require('../views/index.ejs')
-
-//___________________
 //Database
 //___________________
 // How to connect to the database either via heroku or locally
@@ -57,14 +52,11 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //   res.send('Hello World!');
 // });
 
-// Index Route
-app.get('/index', (req,res) => {
-  res.render('index.ejs')
-})
-
 // Seed Route
-app.get('/seed', (req, res) => {
-  Stitches.create([
+const Stitches = require('./models/stitches.js')
+app.get('/seed', async (req, res) => {
+  const newStitches =
+  [
     {
       img: "https://imgur.com/psb41Th",
       name: 'woven wheel & satin stitch combo',
@@ -107,9 +99,22 @@ app.get('/seed', (req, res) => {
       type: 'Filling or Line',
       notes: 'Used for filling large areas and outlining. Satin stitch is especially useful for creating color gradients.'
     }
-  ], (err,data) => {
-      res.redirect('/index')
-  })
+  ]
+    try {
+      const seedItems = await Stitches.create(newStitches)
+      res.send(seedItems)
+    } catch (err) {
+      res.send(err.message)
+    }
+});
+
+// Index Route
+app.get('/welcomepage', (req,res) => {
+  Stitches.findById(req.params.id, (err, newStitches) => {
+    res.render('index.ejs', {
+      stitches: newStitches
+    });
+  });
 });
 
 //___________________

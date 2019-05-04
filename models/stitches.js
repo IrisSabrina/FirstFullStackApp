@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
 
-const stitchesSchema = new mongoose.Schema({
-    pic: <img src=""/>,
+const stitchesSchema = Schema({
+    img: {type: String, required: false},
     name: { type: String, required: true },
     level: String,
     type: String,
