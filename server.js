@@ -57,9 +57,60 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //   res.send('Hello World!');
 // });
 
+// Index Route
 app.get('/index', (req,res) => {
   res.render('index.ejs')
 })
+
+// Seed Route
+app.get('/seed', (req, res) => {
+  Stitches.create([
+    {
+      img: "https://imgur.com/psb41Th",
+      name: 'woven wheel & satin stitch combo',
+      level: 'Intermediate',
+      type: 'Filling',
+      notes: 'Used for filling large areas and creating depth. Satin stitch is especially useful for creating color gradients.'
+    },
+    {
+      img: "https://imgur.com/M34i15X",
+      name: 'bullion knot stitch',
+      level: 'Intermediate',
+      type: 'Filling',
+      notes: 'Used for filling small to medium areas and creating depth.'
+    },
+    {
+      img: "https://imgur.com/KnVWjuK",
+      name: 'isolated chain stitch, stem stitch, & wheel stitch combo',
+      level: 'Beginner to Intermediate',
+      type: 'Filling or Line',
+      notes: 'Used for filling small to medium areas and outlining.'
+    },
+    {
+      img: "https://imgur.com/XbnrXmh",
+      name: 'satin stitch',
+      level: 'Beginner to Intermediate',
+      type: 'Filling',
+      notes: 'Used for filling large areas.Satin stitch is especially useful for creating color gradients.'
+    },
+    {
+      img: "https://imgur.com/q7xDCjb",
+      name: 'back stitch & satin stitch combo',
+      level: 'Beginner to Intermediate',
+      type: 'Filling or Line',
+      notes: 'Used for filling large areas and outlining. Satin stitch is especially useful for creating color gradients.'
+    },
+    {
+      img: "https://imgur.com/qaJzthS",
+      name: 'french knot, stem stitch, and satin stitch combo',
+      level: 'Beginner to Intermediate',
+      type: 'Filling or Line',
+      notes: 'Used for filling large areas and outlining. Satin stitch is especially useful for creating color gradients.'
+    }
+  ], (err,data) => {
+      res.redirect('/index')
+  })
+});
 
 //___________________
 //Listener
