@@ -133,6 +133,13 @@ app.get('/welcomepage/:id', (req, res) => { 
   }) ;
 });
 
+// Delete Route
+app.delete('/welcomepage/:id', (req, res) => {
+  Stitches.findByIdAndRemove(req.params.id, (err, data) => {
+  res.redirect('/welcomepage');
+  });
+});
+
 // Edited Stitches Put Route
 app.put('/welcomepage/:id', (req, res) => {
   Stitches.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedStitches) => {
@@ -155,6 +162,7 @@ app.post('/welcomepage', (req, res) => {
     res.redirect('/welcomepage');
   });
 });
+
 //___________________
 //Listener
 //___________________
