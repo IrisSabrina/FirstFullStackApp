@@ -3,19 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      img {
+        height: 200px;
+        width: 200px;
+      }
+    </style>
   </head>
   <body>
     <h1>Stitches by Moonlight</h1>
     <h2>A stitchy collection for those most comfortable living in the dark.</h2>
     <div class="stitches">
-        <% for (let i = 0; i < Stitches.length; i++) { %>
-            <a href="/welcomepage/<%=Stitches[i].id;%>"> <img src="<%= Stitches[i].img %> "></img> </a>
+          <% for (let i = 0; i < stitches.length; i++) { %>
+            <a href="/welcomepage/<%=stitches[i].id;%>"> <img src="<%= stitches[i].img %> "></img> </a>
           <% } %>
     </div>
-    <!-- <div class="add-new">
-      <nav>
-        <a href="/welcomepage/new/">Create New Product!</a>
-      </nav>
-    </div> -->
+    <nav>
+            <a href="/welcomepage/new">Add a New Stitch</a>
+    </nav>
   </body>
 </html>

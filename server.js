@@ -3,6 +3,7 @@
 //___________________
 const express = require('express');
 const methodOverride  = require('method-override');
+const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
@@ -52,48 +53,53 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //   res.send('Hello World!');
 // });
 
+// New Route
+app.get('/welcomepage/new', (req, res) => { 
+  res.render('new.ejs');
+});
+
 // Seed Route
 const Stitches = require('./models/stitches.js')
 app.get('/seed', async (req, res) => {
   const newStitches =
   [
     {
-      img: "https://imgur.com/psb41Th",
+      img: "https://i.imgur.com/psb41Th.jpg",
       name: 'woven wheel & satin stitch combo',
       level: 'Intermediate',
       type: 'Filling',
       notes: 'Used for filling large areas and creating depth. Satin stitch is especially useful for creating color gradients.'
     },
     {
-      img: "https://imgur.com/M34i15X",
+      img: "https://i.imgur.com/M34i15X.png",
       name: 'bullion knot stitch',
       level: 'Intermediate',
       type: 'Filling',
       notes: 'Used for filling small to medium areas and creating depth.'
     },
     {
-      img: "https://imgur.com/KnVWjuK",
+      img: "https://i.imgur.com/KnVWjuK.jpg",
       name: 'isolated chain stitch, stem stitch, & wheel stitch combo',
       level: 'Beginner to Intermediate',
       type: 'Filling or Line',
       notes: 'Used for filling small to medium areas and outlining.'
     },
     {
-      img: "https://imgur.com/XbnrXmh",
+      img: "https://i.imgur.com/XbnrXmh.png",
       name: 'satin stitch',
       level: 'Beginner to Intermediate',
       type: 'Filling',
       notes: 'Used for filling large areas.Satin stitch is especially useful for creating color gradients.'
     },
     {
-      img: "https://imgur.com/q7xDCjb",
+      img: "https://i.imgur.com/q7xDCjb.png",
       name: 'back stitch & satin stitch combo',
       level: 'Beginner to Intermediate',
       type: 'Filling or Line',
       notes: 'Used for filling large areas and outlining. Satin stitch is especially useful for creating color gradients.'
     },
     {
-      img: "https://imgur.com/qaJzthS",
+      img: "https://i.imgur.com/qaJzthS.jpg",
       name: 'french knot, stem stitch, and satin stitch combo',
       level: 'Beginner to Intermediate',
       type: 'Filling or Line',
@@ -109,14 +115,46 @@ app.get('/seed', async (req, res) => {
 });
 
 // Index Route
-app.get('/welcomepage', (req,res) => {
-  Stitches.findById(req.params.id, (err, newStitches) => {
-    res.render('index.ejs', {
-      stitches: newStitches
-    });
+app.get('/welcomepage', (req, res) => { 
+    Stitches.find({}, (error, newStitches) => { 
+      //console.log(newStitches);
+      res.render('index.ejs', { 
+      stitches: newStitches 
+    }) ;
+  }) ;
+});
+
+// Show Route
+app.get('/welcomepage/:id', (req, res) => { 
+    Stitches.findById(req.params.id, (error, foundStitches) => { 
+      res.render('show.ejs', { 
+      stitch: foundStitches 
+    }) ;
+  }) ;
+});
+
+// Edited Stitches Put Route
+app.put('/welcomepage/:id', (req, res) => {
+  Stitches.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedStitches) => {
+    res.redirect('/welcomepage');
   });
 });
 
+// Edit Route
+app.get('/welcomepage/:id/edit', (req, res) => { 
+    Stitches.findById(req.params.id, (error, editStitches) => { 
+      res.render('edit.ejs', { 
+      editedstitch: editStitches 
+    }) ;
+  }) ;
+});
+
+// New Stitch Post Route
+app.post('/welcomepage', (req, res) => {
+  Stitches.create(req.body, (err, addStitch) => {
+    res.redirect('/welcomepage');
+  });
+});
 //___________________
 //Listener
 //___________________

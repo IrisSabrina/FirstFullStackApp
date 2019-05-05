@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Stitch Info</title>
+  </head>
+  <body>
+    <h1>A Few Notes on Your Chosen Stitch...</h1>
+
+    <img src="<%=stitch.img %> "></img>
+
+    <h3>This a <%=stitch.name %>.</h3>
+
+    <ul>
+      <li>Level: <%=stitch.level %></li>
+      <li>Type: <%=stitch.type %></li>
+      <li>Notes: <%=stitch.notes %></li>
+    </ul>
+
+    <nav>
+            <a href="/welcomepage/<%=stitch.id%>/edit">Edit this Stitch</a>
+    </nav>
+
+    <nav>
+            <a href="/welcomepage">Back to Home Page</a>
+    </nav>
+  </body>
+</html>

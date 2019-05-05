@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Stitch Info</title>
+  </head>
+  <body>
+    <h1>Edit This Stitch</h1>
+
+    <img src="<%=editedstitch.img %> "></img>
+
+    <form action="/welcomepage/<%=editedstitch.id %>?_method=PUT" method="POST">
+      Image: <input type="text" name="upload an image" value="paste image url" /><br/>
+      Name: <input type="text" name="name" value="<%=editedstitch.name %>" /><br/>
+      Level: <input type="text" name="level" value="<%=editedstitch.level %>" /><br/>
+      Type: <input type="text" name="type" value="<%=editedstitch.type %>" /><br/>
+      Notes: <input type="text" name="notes" value="<%=editedstitch.notes %>" /><br/>
+      <input type="submit" value="Submit Edits">
+    </form>
+    <nav>
+            <a href="/welcomepage">Back to Home Page</a>
+    </nav>
+  </body>
+</html>
