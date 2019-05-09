@@ -17,4 +17,5 @@ I knew I wanted to basically create an app that allowed for collecting. I do emb
 to document the types of stitches I've learned and how/what I've used them for. Sort of like my own stitching library.
 
 Unsolved Issue
-I kept getting an error when I was trying to connect my CSS. I think everything I've learned about styling must have leaked out my ears.
+I kept getting an error when I was trying to connect my CSS to my secondary pages. I think everything I've learned about styling 
+must have leaked out my ears. To get around this I had to add styling within all the html files for the secondary pages.
