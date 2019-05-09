@@ -158,6 +158,7 @@ app.get('/welcomepage/:id/edit', (req, res) => { 
 
 // New Stitch Post Route
 app.post('/welcomepage', (req, res) => {
+  console.log(req.body);
   Stitches.create(req.body, (err, addStitch) => {
     res.redirect('/welcomepage');
   });
