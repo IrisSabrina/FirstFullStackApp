@@ -1,22 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
     <meta charset="utf-8">
     <title>New Stitch</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="new.css">
+
+    <style>
+      header {
+        background-color: rgba(0 0 0 0.5);
+        outline-color: white;
+        outline-style: double;
+        outline-width: thick;
+      }
+
+      h1 {
+        text-align: center;
+        font-family: georgia;
+        color: white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      body {
+        background-image: url("https://i.imgur.com/cTkclbL.jpg");
+        max-width: 100%;
+        height: auto;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      form {
+        text-align: center;
+        align-content: center;
+        color: white;
+      }
+      a:link, a:visited {
+        background-color: black;
+        color: white;
+        padding: 10px 10px 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      a:hover, a:active {
+        background-color: grey;
+      }
+    </style>
+
   </head>
-  <body>
-    <h1>Add a New Stitch</h1>
+  <body class="newbody">
+    <header>
+      <h1>Add a New Stitch</h1>
+    </header>
 
     <form action="/welcomepage" method="POST">
       Image: <input type="url" name="img" placeholder="paste image url" /><br/>
       Name: <input type="text" name="name" placeholder="name" /><br/>
-      Level: <input type="text" name="level" placeholder="level" /><br/>
+      <label for="skill level">Skill Level:</label>
+      <select level="level" name="level" id="skill level" class="form-control" />
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option><br/>
       Type: <input type="text" name="type" placeholder="type" /><br/>
       Notes: <input type="text" name="notes" placeholder="notes" /><br/>
       <input type="submit" value="Submit New Stitch">
     </form>
-    <div class="btn-group btn-group-justified">
-            <a href="/welcomepage" class="btn btn-primary">Back to Home Page</a>
-    </div>
+
+    <a href="/welcomepage">Back to Home Page</a>
+
   </body>
 </html>

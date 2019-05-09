@@ -3,29 +3,99 @@
   <head>
     <meta charset="utf-8">
     <title>Stitch Info</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="main.css">
+
+    <style>
+
+        header {
+          background-color: rgba(0 0 0 0.5);
+          outline-color: white;
+          outline-style: double;
+          outline-width: thick;
+        }
+
+        h1 {
+          text-align: center;
+          font-family: georgia;
+          color: white;
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
+        body {
+          background-image: url("https://i.imgur.com/cEx9Ipk.jpg");
+          max-width: 100%;
+          height: auto;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        form {
+          text-align: center;
+          align-content: center;
+          color: white;
+        }
+        a:link, a:visited {
+          background-color: black;
+          color: white;
+          padding: 10px 10px 10px 10px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+        }
+
+        a:hover, a:active {
+          background-color: grey;
+        }
+
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 50%;
+          padding-bottom: 20px;
+        }
+    </style>
+
   </head>
   <body>
-    <h1>Edit This Stitch</h1>
 
-    <img src="<%=editedstitch.img %> "></img>
+    <header>
+      <h1>Edit This Stitch</h1>
+    </header>
 
-    <form action="/welcomepage/<%=editedstitch.id %>?_method=PUT" method="POST">
-      Image: <input type="text" name="upload an image" value="paste image url" /><br/>
-      Name: <input type="text" name="name" value="<%=editedstitch.name %>" /><br/>
-      Level: <input type="text" name="level" value="<%=editedstitch.level %>" /><br/>
-      Type: <input type="text" name="type" value="<%=editedstitch.type %>" /><br/>
-      Notes: <input type="text" name="notes" value="<%=editedstitch.notes %>" /><br/>
+    <img src="<%=editedstitch.img %> " class="center"></img>
+
+    <form action="/welcomepage/<%=editedstitch.id %>?_method=PUT" method="POST" class="form-class">
+
+      <label for="image">Image:</label>
+      <input type="url" name="img" value="<%=editedstitch.img %>" id="image" class="form-control" /><br/>
+
+      <label for="image">Name:</label>
+      <input type="text" name="name" value="<%=editedstitch.name %>" id="name" class="form-control" /><br/>
+
+
+      <label for="skill level">Skill Level:</label>
+      <select level="level" name="level" value="<%=editedstitch.level %>" id="skill level" class="form-control" />
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option><br/>
+
+      <label for="stitchtype">Stitch Type:</label>
+      <input type="text" name="type" value="<%=editedstitch.type %>" id="stitchtype" class="form-control" /><br/>
+
+      <label for="notes">Notes:</label>
+      <input type="text" name="notes" value="<%=editedstitch.notes %>" id="notes" class="form-control" /><br/>
+
       <input type="submit" value="Submit Edits">
+
     </form>
 
     <form action="/welcomepage/<%=editedstitch.id%>?_method=DELETE" method="POST">
-                          <input type="submit" value="DELETE" />
+      <input type="submit" value="DELETE" />
     </form>
 
-    <nav class="navbar fixed-bottom navbar-expand-md navbar-light bg-light">
-      <div class="container">
-            <a href="/welcomepage" class="btn btn-primary">Back to Home Page</a>
-      </div>
-    </nav>
+    <a href="/welcomepage" class="btn btn-secondary">Back to Home Page</a>
+
   </body>
 </html>
